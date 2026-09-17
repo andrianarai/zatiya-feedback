@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#155eef" />
+    <meta
+      name="description"
+      content="Анонімна форма зворотного зв’язку після зустрічей ЗАТІЇ"
+    />
+    <title>Відгук — ЗАТІЯ</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23155eef'/%3E%3Cpath d='M18 18h28L29 46h20' fill='none' stroke='white' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="background-shape background-shape--one" aria-hidden="true"></div>
+    <div class="background-shape background-shape--two" aria-hidden="true"></div>
+
+    <main class="app-shell">
+      <header class="brand-header">
+        <h1 class="brand-name">ЗАТІЯ</h1>
+        <p class="intro">
+          <strong>Твоя думка важлива 💙</strong>
+          <span>Це займе приблизно 1 хвилину.</span>
+        </p>
+      </header>
+
+      <section class="panel" id="formPanel" aria-labelledby="formTitle">
+        <div class="panel-heading">
+          <p class="meeting-label" id="meetingLabel">Зустріч</p>
+          <h2 id="formTitle">Як пройшла сьогоднішня ЗАТІЯ?</h2>
+        </div>
+
+        <form id="feedbackForm" novalidate>
+          <fieldset class="question-card" id="ratingFieldset">
+            <legend>
+              Наскільки корисною для тебе була сьогоднішня зустріч?
+              <span class="required-mark" aria-hidden="true">*</span>
+              <span class="visually-hidden">Обов’язкове запитання</span>
+            </legend>
+
+            <div
+              class="stars"
+              id="starRating"
+              role="radiogroup"
+              aria-label="Оцінка корисності зустрічі"
+              aria-describedby="ratingError"
+            >
+              <button type="button" class="star" role="radio" aria-checked="false" aria-label="1 з 5" data-value="1">☆</button>
+              <button type="button" class="star" role="radio" aria-checked="false" aria-label="2 з 5" data-value="2">☆</button>
+              <button type="button" class="star" role="radio" aria-checked="false" aria-label="3 з 5" data-value="3">☆</button>
+              <button type="button" class="star" role="radio" aria-checked="false" aria-label="4 з 5" data-value="4">☆</button>
+              <button type="button" class="star" role="radio" aria-checked="false" aria-label="5 з 5" data-value="5">☆</button>
+            </div>
+            <p class="field-error" id="ratingError" aria-live="polite"></p>
+          </fieldset>
+
+          <fieldset class="question-card" id="ideasFieldset">
+            <legend>
+              Чи дала ця зустріч тобі нові думки або ідеї щодо власного шляху?
+              <span class="required-mark" aria-hidden="true">*</span>
+              <span class="visually-hidden">Обов’язкове запитання</span>
+            </legend>
+
+            <div
+              class="choice-grid"
+              id="newIdeasChoices"
+              role="radiogroup"
+              aria-label="Чи з’явилися нові думки або ідеї"
+              aria-describedby="ideasError"
+            >
+              <button type="button" class="choice-button" role="radio" aria-checked="false" data-value="Так">Так</button>
+              <button type="button" class="choice-button" role="radio" aria-checked="false" data-value="Частково">Частково</button>
+              <button type="button" class="choice-button" role="radio" aria-checked="false" data-value="Ні">Ні</button>
+            </div>
+            <p class="field-error" id="ideasError" aria-live="polite"></p>
+          </fieldset>
+
+          <div class="question-card">
+            <label for="takeaway">Що головне ти забираєш із сьогоднішньої зустрічі?</label>
+            <textarea
+              id="takeaway"
+              name="takeaway"
+              rows="3"
+              maxlength="500"
+              placeholder="Напиши кілька слів..."
+            ></textarea>
+          </div>
+
+          <div class="question-card">
+            <label for="improvement">Що ми можемо покращити в наступних зустрічах?</label>
+            <textarea
+              id="improvement"
+              name="improvement"
+              rows="3"
+              maxlength="500"
+              placeholder="Твоя ідея або побажання..."
+            ></textarea>
+          </div>
+
+          <button class="submit-button" id="submitButton" type="submit">
+            <span class="button-label">Надіслати відгук</span>
+            <span class="spinner" aria-hidden="true"></span>
+          </button>
+
+          <p class="privacy-note">Анонімно — без імені, email чи номера телефону.</p>
+          <p class="submit-status" id="submitStatus" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="panel state-panel" id="successPanel" aria-labelledby="successTitle" tabindex="-1" hidden>
+        <div class="success-icon" aria-hidden="true">✓</div>
+        <h2 id="successTitle">Дякуємо 💙</h2>
+        <p>Твій відгук допомагає нам робити ЗАТІЮ кращою.</p>
+      </section>
+
+      <section class="panel state-panel state-panel--error" id="meetingErrorPanel" aria-labelledby="meetingErrorTitle" hidden>
+        <div class="error-icon" aria-hidden="true">!</div>
+        <h2 id="meetingErrorTitle">Посилання не працює</h2>
+        <p>У ньому немає правильного номера зустрічі. Попроси організатора надіслати актуальний QR-код.</p>
+      </section>
+
+      <noscript>
+        <section class="panel state-panel state-panel--error">
+          <h2>Потрібен JavaScript</h2>
+          <p>Увімкни JavaScript у браузері, щоб надіслати відгук.</p>
+        </section>
+      </noscript>
+    </main>
+
+    <form id="submissionForm" method="post" target="submissionFrame" hidden>
+      <input type="hidden" name="Meeting" id="submissionMeeting" />
+      <input type="hidden" name="Rating" id="submissionRating" />
+      <input type="hidden" name="NewIdeas" id="submissionNewIdeas" />
+      <input type="hidden" name="Takeaway" id="submissionTakeaway" />
+      <input type="hidden" name="Improvement" id="submissionImprovement" />
+      <input type="hidden" name="RequestToken" id="submissionToken" />
+    </form>
+    <iframe class="submission-frame" name="submissionFrame" id="submissionFrame" title="Відправлення відгуку"></iframe>
+  </body>
+</html>
