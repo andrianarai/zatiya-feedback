@@ -1,6 +1,5 @@
 // Paste the Google Apps Script Web App URL between the quotes.
-// It must end with /exec, not /dev.
-const APPS_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzBw1BfX7wSe1Naj7AFcHDRYOTaW90pVGPkqzefxXtI9UySd0d849BMcJ8D7lpwMUGp/exec";
 
 const SUBMISSION_TIMEOUT_MS = 20000;
 
@@ -198,7 +197,8 @@ feedbackForm.addEventListener("submit", (event) => {
     return;
   }
 
-  if (!/^https:\/\/script\.google\.com\/.+\/exec$/.test(APPS_SCRIPT_URL)) {
+  // Google Apps Script URLs may include a trailing slash or query parameters.
+  if (!/^https:\/\/script\.google\.com\/.*\/exec(?:\/|\?.*)?$/.test(APPS_SCRIPT_URL.trim())) {
     showSubmissionError("Форму ще не підключено. Повідом організатора ЗАТІЇ.");
     return;
   }

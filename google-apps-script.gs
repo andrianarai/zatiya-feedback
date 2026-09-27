@@ -1,4 +1,5 @@
 const SHEET_NAME = "Responses";
+const SPREADSHEET_ID = "1ru41UgxdSE8sJhcvTNsM5OhRaxYQaf3OBzC-n43pbUA";
 const HEADERS = [
   "Timestamp",
   "Meeting",
@@ -83,11 +84,7 @@ function doPost(event) {
 }
 
 function getResponseSheet_() {
-  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-
-  if (!spreadsheet) {
-    throw new Error("Apps Script не підключений до Google Таблиці.");
-  }
+  const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
 
   let sheet = spreadsheet.getSheetByName(SHEET_NAME);
 
@@ -99,14 +96,6 @@ function getResponseSheet_() {
     sheet.appendRow(HEADERS);
     sheet.setFrozenRows(1);
     sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight("bold");
-  } else {
-    const currentHeaders = sheet
-      .getRange(1, 1, 1, HEADERS.length)
-      .getDisplayValues()[0];
-
-    if (currentHeaders.join("|") !== HEADERS.join("|")) {
-      throw new Error("Заголовки таблиці не відповідають очікуваним.");
-    }
   }
 
   return sheet;
@@ -136,7 +125,7 @@ function response_(ok, message, requestToken) {
     <html lang="uk">
       <head><meta charset="UTF-8"></head>
       <body>
-        <script>window.parent.postMessage(${payload}, "*");<\/script>
+        <script>window.top.postMessage(${payload}, "*");<\/script>
       </body>
     </html>`;
 
