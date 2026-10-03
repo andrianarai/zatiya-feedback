@@ -241,13 +241,20 @@ h2 {
 }
 
 .choice-button {
+  display: flex;
+  min-width: 0;
   min-height: 3.25rem;
-  padding: 0.65rem 0.45rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem clamp(0.2rem, 2vw, 0.65rem);
   border: 1.5px solid #bfd0ef;
   border-radius: var(--radius-md);
   color: var(--text);
   background: var(--surface);
   font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  overflow-wrap: break-word;
   cursor: pointer;
   transition: border-color 150ms ease, background 150ms ease, color 150ms ease, transform 150ms ease;
 }
@@ -520,6 +527,15 @@ button:focus-visible {
 
   .question-card .question-legend,
   .question-card label {
+    font-size: 0.95rem;
+  }
+
+  .choice-grid {
+    gap: 0.4rem;
+  }
+
+  .choice-button {
+    padding-inline: 0.2rem;
     font-size: 0.95rem;
   }
 }
