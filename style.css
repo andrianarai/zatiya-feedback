@@ -26,6 +26,8 @@
 html {
   min-width: 320px;
   background: var(--page);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -45,6 +47,7 @@ body {
 button,
 textarea {
   font: inherit;
+  font-size: 16px;
 }
 
 button {
@@ -168,20 +171,25 @@ h2 {
   transition: border-color 160ms ease, box-shadow 160ms ease;
 }
 
-fieldset.question-card {
-  display: block;
-}
-
-.question-card legend,
+.question-card .question-legend,
 .question-card label {
   display: block;
+  box-sizing: border-box;
   width: 100%;
+  max-width: 100%;
   margin: 0 0 0.9rem;
   padding: 0;
   color: var(--text);
   font-size: 1rem;
+  font-family: inherit;
   font-weight: 720;
   line-height: 1.4;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.question-card .question-legend {
+  margin-top: 0;
 }
 
 .required-mark {
@@ -490,6 +498,10 @@ button:focus-visible {
     padding: 0.9rem;
   }
 
+  h2 {
+    font-size: 1.35rem;
+  }
+
   .star {
     width: 2.85rem;
     height: 2.85rem;
@@ -498,6 +510,17 @@ button:focus-visible {
 
   .choice-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 26rem) {
+  .intro strong {
+    font-size: 1rem;
+  }
+
+  .question-card .question-legend,
+  .question-card label {
+    font-size: 0.95rem;
   }
 }
 
