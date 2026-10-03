@@ -37,12 +37,12 @@
         </div>
 
         <form id="feedbackForm" novalidate>
-          <fieldset class="question-card" id="ratingFieldset">
-            <legend>
+          <div class="question-card" id="ratingFieldset" role="group" aria-labelledby="ratingQuestion">
+            <p class="question-legend" id="ratingQuestion">
               Наскільки корисною для тебе була сьогоднішня зустріч?
               <span class="required-mark" aria-hidden="true">*</span>
               <span class="visually-hidden">Обов’язкове запитання</span>
-            </legend>
+            </p>
 
             <div
               class="stars"
@@ -58,14 +58,14 @@
               <button type="button" class="star" role="radio" aria-checked="false" aria-label="5 з 5" data-value="5">☆</button>
             </div>
             <p class="field-error" id="ratingError" aria-live="polite"></p>
-          </fieldset>
+          </div>
 
-          <fieldset class="question-card" id="ideasFieldset">
-            <legend>
+          <div class="question-card" id="ideasFieldset" role="group" aria-labelledby="ideasQuestion">
+            <p class="question-legend" id="ideasQuestion">
               Чи дала ця зустріч тобі нові думки або ідеї щодо власного шляху?
               <span class="required-mark" aria-hidden="true">*</span>
               <span class="visually-hidden">Обов’язкове запитання</span>
-            </legend>
+            </p>
 
             <div
               class="choice-grid"
@@ -79,7 +79,7 @@
               <button type="button" class="choice-button" role="radio" aria-checked="false" data-value="Ні">Ні</button>
             </div>
             <p class="field-error" id="ideasError" aria-live="polite"></p>
-          </fieldset>
+          </div>
 
           <div class="question-card">
             <label for="takeaway">Що головне ти забираєш із сьогоднішньої зустрічі?</label>
